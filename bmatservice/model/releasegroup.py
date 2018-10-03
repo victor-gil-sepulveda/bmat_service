@@ -3,14 +3,24 @@ import urllib2
 from bmatservice.model.common import set_limit_into_range, Constants
 
 
-class ReleaseGroup:
+class ReleaseGroupList:
 
     def __init__(self, artist_bmat_id):
         self.artist_bmat_id = artist_bmat_id
-        self.release_group_data = []
+        self.release_groups = []
 
     def add_releases_from_url(self, offset, limit):
-
+        """
+        The API looks to be very solid when wrong offsets and limits are used (e.g. when offset
+        or limit > total count
+        """
+        api_call_url = Constants.BASE_API_URL + Constants.RELEASE_GROUP_QUERY.format(
+            artist_id=self.artist_bmat_id,
+            offset=offset,
+            limit=limit
+        )
+        json_data_s = urllib2.urlopen(api_call_url).read()
+        self.release_groups.extend(json.loads(json_data_s)["release-groups"])
 
     def get(self, offset=0, limit=50):
         """
@@ -19,19 +29,20 @@ class ReleaseGroup:
         It will not throw any error.
         """
         # Reset internal data
-        self.release_group_data = []
+        self.release_groups = []
 
         corrected_limit = set_limit_into_range(limit,
                                                Constants.RELEASE_GROUP_MIN_LIMIT,
                                                Constants.RELEASE_GROUP_MAX_LIMIT)
+        # TODO send error if wrong offset or limit (must be pos int, mst be in range) return {"error": "blah"}
 
-        api_call_url = Constants.BASE_API_URL + Constants.RELEASE_GROUP_QUERY.format(
-            artist_id=self.artist_bmat_id
-        )
-        print api_call_url
-        json_contents = urllib2.urlopen(api_call_url).read()
-        print json_contents
+        query_offset = offset
+        query_limit = corrected_limit
+        while limit > 0:
+            self.add_releases_from_url(query_offset, query_limit)
+            query_limit -= Constants.API_RELEASE_GROUP_MAX_LIMIT
+            query_offset += Constants.API_RELEASE_GROUP_MAX_LIMIT
 
-        self.release_group_data = json.loads(json_contents)
+
         #HTTPError: HTTP Error 404: Not Found
         # or contains "error" key
