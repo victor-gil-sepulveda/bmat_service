@@ -1,1 +1,1 @@
-from bmatservice.service.rest.v1.releasegroup import ReleaseGroup
+from bmatservice.service.rest.v1.releasegroup import ReleaseGroupEndpoint

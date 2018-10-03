@@ -1,10 +1,7 @@
 import urllib2
 from flask_restful import Resource, abort
-from flask import request
 from webargs import fields
 from webargs.flaskparser import use_args
-from xmljson import badgerfish as bf
-from xml.etree.ElementTree import fromstring
 import json
 
 example_args = {
@@ -14,7 +11,7 @@ example_args = {
 }
 
 
-class ReleaseGroup(Resource):
+class ReleaseGroupEndpoint(Resource):
 
     def __init__(self):
         pass
