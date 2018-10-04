@@ -43,3 +43,5 @@ class ReleaseGroupProcessor:
 
         except HTTPError, e: # url get errors
             return {"error": "HttpError - code: {code}; reason: {reason}".format(code=e.code, reason=e.reason)}
+
+        return results
