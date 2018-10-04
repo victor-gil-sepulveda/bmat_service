@@ -16,5 +16,9 @@ class ReleaseGroup:
         api_call_url = Constants.BASE_API_URL + Constants.RELEASE_GROUP_QUERY.format(
             rgroup_id=self.rgroup_id
         )
+        print api_call_url
         json_data_s = urllib2.urlopen(api_call_url).read()
         self.data = json.loads(json_data_s)
+
+    def __getitem__(self, key):
+        return self.data[key]

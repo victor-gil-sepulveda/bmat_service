@@ -19,7 +19,13 @@ class ReleaseGroupList(object):
             offset=offset,
             limit=limit
         )
-        json_data_s = urllib2.urlopen(api_call_url).read()
+        print api_call_url
+        # json_data_s = urllib2.urlopen(api_call_url).read()
+        # json_data = json.loads(json_data_s)
+
+        opener = urllib2.build_opener()
+        opener.addheaders = [('User-Agent', 'BMAT API Test SFWENGPOS/1.0 ( victor.gil.sepulveda@gmail.com )')]
+        json_data_s = opener.open(api_call_url).read()
         json_data = json.loads(json_data_s)
 
         if "error" in json_data:

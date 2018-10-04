@@ -1,13 +1,19 @@
 from urllib2 import HTTPError
 
+import time
+
 from bmatservice.model.releasegroup import ReleaseGroup
 from bmatservice.model.releasegrouplist import ReleaseGroupList
+
+
+def process_year(year_string):
+    return year_string
 
 
 class ReleaseGroupProcessor:
 
     @staticmethod
-    def go(artist_bmat_id, offset, limit):
+    def get(artist_bmat_id, offset, limit, sleep_time=1.0):
         results = {"albums": []}
 
         # Note that the API is robust to limit and offset values > object count and (it looks like)
@@ -22,7 +28,7 @@ class ReleaseGroupProcessor:
             for i in range(len(rgroup_list)):
                 rgroup = ReleaseGroup(rgroup_list[i]["id"])
                 rgroup.get()
-                results.append(
+                results["albums"].append(
                     {
                         "id": rgroup["id"],
                         "title": rgroup["title"],
@@ -30,6 +36,7 @@ class ReleaseGroupProcessor:
                         "release_count": len(rgroup["releases"])
                     }
                 )
+                time.sleep(sleep_time)
 
         except RuntimeError, e: # (api error etc)
             return {"error": str(e)}
