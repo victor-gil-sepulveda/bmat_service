@@ -4,6 +4,7 @@ import os
 import bmatservice.model.test.data as data
 from bmatservice.model.common import Constants
 from bmatservice.model.releasegrouplist import ReleaseGroupList
+from bmatservice.model.releasegroupprocessor import process_year
 
 
 class TestReleaseGroup(unittest.TestCase):
@@ -49,6 +50,14 @@ class TestReleaseGroup(unittest.TestCase):
         rgd.get(100, Constants.RELEASE_GROUP_MAX_LIMIT+100)
         self.assertEqual(len(rgd.release_groups), Constants.RELEASE_GROUP_MAX_LIMIT)
         self.assertEqual(rgd.release_groups[-1], 249)
+
+    def test_year_extraction(self):
+        self.assertEqual(process_year("1984-07-30"), 1984)
+        self.assertEqual(process_year("1984-"), 1984)
+        self.assertEqual(process_year("-07-30"), "-07-30")
+        self.assertEqual(process_year(""), "")
+        self.assertEqual(process_year("lol"), "lol")
+        self.assertEqual(process_year("1984"), 1984)
 
 if __name__ == '__main__':
     unittest.main()

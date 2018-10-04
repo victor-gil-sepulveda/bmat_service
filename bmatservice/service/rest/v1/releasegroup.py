@@ -1,8 +1,6 @@
-import urllib2
-from flask_restful import Resource, abort
+from flask_restful import Resource
 from webargs import fields
 from webargs.flaskparser import use_args
-import json
 
 from bmatservice.model.common import Constants
 from bmatservice.model.releasegroupprocessor import ReleaseGroupProcessor

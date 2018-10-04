@@ -7,7 +7,11 @@ from bmatservice.model.releasegrouplist import ReleaseGroupList
 
 
 def process_year(year_string):
-    return year_string
+    try:
+        parts = year_string.split("-")
+        return int(parts[0])
+    except Exception:
+        return year_string
 
 
 class ReleaseGroupProcessor:
