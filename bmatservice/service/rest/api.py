@@ -19,7 +19,6 @@ def setup_rest_api(flask_app):
 
     version = v1
 
-    print gen_resource_url(API_PREFIX, version, "rgroup")
     api.add_resource(version.ReleaseGroupEndpoint,
                      gen_resource_url(API_PREFIX, version, "rgroup"))
 

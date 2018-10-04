@@ -19,9 +19,13 @@ class ReleaseGroupList:
             offset=offset,
             limit=limit
         )
-        print "api call", api_call_url
         json_data_s = urllib2.urlopen(api_call_url).read()
-        self.release_groups.extend(json.loads(json_data_s)["release-groups"])
+        json_data = json.loads(json_data_s)
+
+        if "error" in json_data:
+            return RuntimeError(json_data["error"])
+
+        self.release_groups.extend(json_data["release-groups"])
 
     def get(self, offset=0, limit=50):
         """
@@ -47,3 +51,9 @@ class ReleaseGroupList:
 
         #HTTPError: HTTP Error 404: Not Found
         # or contains "error" key
+
+    def __len__(self):
+        return len(self.release_groups)
+
+    def __getitem__(self, key):
+        return self.release_groups[key]
