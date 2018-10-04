@@ -1,0 +1,78 @@
+{
+    "disambiguation": "", 
+    "first-release-date": "1988", 
+    "id": "02546843-b2b1-4c7f-a31a-23c31e8133bc", 
+    "primary-type": "Album", 
+    "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc", 
+    "releases": [
+        {
+            "barcode": "", 
+            "country": "US", 
+            "date": "1989", 
+            "disambiguation": "", 
+            "id": "3a94cd49-a866-4bae-99f4-703bb60f4aba", 
+            "packaging": "Jewel Case", 
+            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a", 
+            "quality": "normal", 
+            "release-events": [
+                {
+                    "area": {
+                        "disambiguation": "", 
+                        "id": "489ce91b-6658-3307-9877-795b68554c98", 
+                        "iso-3166-1-codes": [
+                            "US"
+                        ], 
+                        "name": "United States", 
+                        "sort-name": "United States"
+                    }, 
+                    "date": "1989"
+                }
+            ], 
+            "status": "Promotion", 
+            "status-id": "518ffc83-5cde-34df-8627-81bff5093d92", 
+            "text-representation": {
+                "language": "eng", 
+                "script": "Latn"
+            }, 
+            "title": "Mandatory Metallica"
+        }, 
+        {
+            "barcode": "", 
+            "country": "US", 
+            "date": "1988", 
+            "disambiguation": "", 
+            "id": "47e805c4-1c7f-44c1-a122-06b721e5692f", 
+            "packaging": "Jewel Case", 
+            "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a", 
+            "quality": "normal", 
+            "release-events": [
+                {
+                    "area": {
+                        "disambiguation": "", 
+                        "id": "489ce91b-6658-3307-9877-795b68554c98", 
+                        "iso-3166-1-codes": [
+                            "US"
+                        ], 
+                        "name": "United States", 
+                        "sort-name": "United States"
+                    }, 
+                    "date": "1988"
+                }
+            ], 
+            "status": "Promotion", 
+            "status-id": "518ffc83-5cde-34df-8627-81bff5093d92", 
+            "text-representation": {
+                "language": "eng", 
+                "script": "Latn"
+            }, 
+            "title": "Mandatory Metallica"
+        }
+    ], 
+    "secondary-type-ids": [
+        "dd2a21e1-0c00-3729-a7a0-de60b84eb5d1"
+    ], 
+    "secondary-types": [
+        "Compilation"
+    ], 
+    "title": "Mandatory Metallica"
+}

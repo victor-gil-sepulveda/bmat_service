@@ -1,10 +1,12 @@
 import json
 import urllib2
-
 from bmatservice.model.common import Constants
 
 
 class ReleaseGroup:
+    """
+    "Tool class" to obtain and store the data from a release
+    """
 
     def __init__(self, rgroup_bmat_id):
         self.rgroup_id = rgroup_bmat_id

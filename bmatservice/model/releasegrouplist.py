@@ -3,7 +3,7 @@ import urllib2
 from bmatservice.model.common import set_limit_into_range, Constants
 
 
-class ReleaseGroupList:
+class ReleaseGroupList(object):
 
     def __init__(self, artist_bmat_id):
         self.artist_id = artist_bmat_id
@@ -39,18 +39,14 @@ class ReleaseGroupList:
         corrected_limit = set_limit_into_range(limit,
                                                Constants.RELEASE_GROUP_MIN_LIMIT,
                                                Constants.RELEASE_GROUP_MAX_LIMIT)
-        # TODO send error if wrong offset or limit (must be pos int, mst be in range) return {"error": "blah"}
 
         query_offset = offset
         query_limit = corrected_limit
         while query_limit > 0:
-            self.add_releases_from_url(query_offset, query_limit)
-            query_limit -= Constants.API_RELEASE_GROUP_MAX_LIMIT
-            query_offset += Constants.API_RELEASE_GROUP_MAX_LIMIT
-
-
-        #HTTPError: HTTP Error 404: Not Found
-        # or contains "error" key
+            this_iteration_limit = min(query_limit, Constants.API_RELEASE_GROUP_MAX_LIMIT)
+            self.add_releases_from_url(query_offset, this_iteration_limit)
+            query_limit -= this_iteration_limit
+            query_offset += this_iteration_limit
 
     def __len__(self):
         return len(self.release_groups)
